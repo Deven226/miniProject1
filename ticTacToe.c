@@ -7,7 +7,7 @@
 
 int main(void){
     printf("Hello World\n");
-    printf("from deven mathoo\n");
+    printf("from deven mathoo and luke dykstra\n");
 
     return 0;
 }
