@@ -1,6 +1,7 @@
 # Makefile for mini project 1 tic tac toe.
 # copied from lab5 makefile
 # modified by Luke Dykstra
+
 #   make        build lab5part2 from lab5part2.c
 #   make clean  delete what make built
 #
