@@ -14,6 +14,23 @@ Its main idea is to only check one edge column (first to make it easy), check th
 
 #include <stdio.h>
 
+void clearBoard(char board[3][3], char initChar) {
+    for (int i=0; i<3; i++) {
+        for (int j=0; j<3; j++) {
+            board[i][j] = initChar;
+        }
+    }
+}
+
+void printBoard(char board[3][3]) {
+    for (int i=0; i<3; i++) {
+        for (int j=0; j<3; j++) {
+            printf("%c ", board[j][i]);
+        }
+        printf("\n"); // cant forget a newline each row
+    }
+}
+
 void rotateBoard(char board[3][3]) {
     // will be a bunch of swap(a, b) with the outer ring of the board (center never moves)
     char hold   = board[0][0];
@@ -25,6 +42,7 @@ void rotateBoard(char board[3][3]) {
     board[1][2] = board[0][2];
     board[0][2] = board[0][1];
     board[0][1] = hold;
+    printBoard(board);
 }
 
 // Returns an int based on what situation is true to be used in a switch case
@@ -48,19 +66,35 @@ int checkForWinInBoard(char board[3][3]) {
     return 0; // no win
 }
 
-void printBoard(char board[3][3]) {
-    for (int i=0; i<3; i++) {
-        for (int j=0; j<3; j++) {
-            printf("%c ", board[j][i]);
+void playerPlayOnBoard(char board[3][3], char currentPlayer) {
+    int targetX=0;
+    int targetY=0;
+    int status=0;
+    printf("\nPlayer %c", currentPlayer);
+    while (1) { // repeat until selects available position
+        while (1) { // repeat until valid X position
+            printf("\nPlease enter the index of your desired position (integer)[0, 1, 2]: ");
+            scanf("%d", &targetX);
+            switch (targetX)
+            {
+            case 0:
+            case 1:
+            case 2: {
+                break;
+            }
+            default:
+                printf("\nPlease check your answer and try again");
+            }
         }
-        printf("\n"); // cant forget a newline each row
     }
 }
 
 int main(void){
-    char theGameBoard[3][3] = {' '}; // initialize the board to be empty
+    char theGameBoard[3][3]; // make the board
+    clearBoard(theGameBoard, '_'); // init the board
     printf("Hello World\n");
     printf("from Deven Mathoo and Luke Dykstra\n");
+    printBoard(theGameBoard);
 
     return 0;
 }
