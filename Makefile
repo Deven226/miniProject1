@@ -2,7 +2,7 @@
 # copied from lab5 makefile
 # modified by Luke Dykstra
 
-#   make        build lab5part2 from lab5part2.c
+#   make        build
 #   make clean  delete what make built
 #
 # -g puts line numbers and variable names into the program,
