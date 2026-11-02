@@ -14,19 +14,11 @@
 #define EMPTY ' '
 
 /* Fill every cell of the n x n board with EMPTY. */
-void board_init(char board[MAX_SIZE][MAX_SIZE], int n) {
-   for(int i = 0; i < n; i++){
-      for(int j = 0; j < n; j++) {
-         board[i][j] = EMPTY;
-      }
-   }
-}
+void board_init(char board[MAX_SIZE][MAX_SIZE], int n);
 
 /* Print the board with row and column numbers so a player can
    identify any cell. */
-void board_print(char board[MAX_SIZE][MAX_SIZE], int n) {
-   
-}
+void board_print(char board[MAX_SIZE][MAX_SIZE], int n);
 
 /* Return 1 if (row, col) is on the board and the cell is EMPTY.
    Return 0 otherwise. */
