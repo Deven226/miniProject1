@@ -28,7 +28,7 @@ int move_is_valid(char board[MAX_SIZE][MAX_SIZE], int n, int row, int col);
    either diagonal. Return 0 otherwise. */
 int board_has_winner(char board[MAX_SIZE][MAX_SIZE], int n, char mark);
 
-/* Return 1 if no cell is EMPTY. Return 0 otherwise. */
+/* Return 1 if full. Return 0 otherwise. */
 int board_is_full(char board[MAX_SIZE][MAX_SIZE], int n);
 
 /* Make the computer's move: write `ai_mark` into one EMPTY cell.
