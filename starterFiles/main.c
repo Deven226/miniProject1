@@ -30,7 +30,8 @@ void startup() {
 
 int main(void){
     startup();
-    while (1) {
+    int playGame=1;
+    while (playGame) {
         // creation of the game board
         char theGameBoard[MAX_SIZE][MAX_SIZE];
         int gameBoardSize=0;
@@ -44,7 +45,7 @@ int main(void){
 
         // how many players
         int gameMode=0;
-        printf("What game mode:\n1 player vs player\n2 player vs bot\n");
+        printf("What game mode:\n1: player vs player\n2: player vs bot\n");
         while (1) {
             if ((gameMode==1)||(gameMode==2)) {break;} // valid answer, done
             else {printf("Value must be integer from 1-2 inclusive: ");} // not valid answer
@@ -66,11 +67,11 @@ int main(void){
                 printf("Player %c has won!\n", player1char);
                 break;
             }
-            if (board_has_winner(theGameBoard, gameBoardSize, player2char)) {
+            if (board_has_winner(theGameBoard, gameBoardSize, player2char)&&!botActive) {
                 printf("Player %c has won!\n", player2char);
                 break;
             }
-            if (board_has_winner(theGameBoard, gameBoardSize, playerBotChar)) {
+            if (board_has_winner(theGameBoard, gameBoardSize, playerBotChar)&&botActive) {
                 printf("You lost against bot %c\n", playerBotChar);
                 break;
             }
@@ -82,14 +83,34 @@ int main(void){
             if (turn%2==0) {
                 int currPosX=-1;
                 while (1) {
+                    printf("Player %c: What is the horizontal index of the position to place %c?\n", player1char, player1char);
+                    currPosX = read_int();
                     if ((0<=currPosX)&&(currPosX<gameBoardSize)) {
-                        
+                        break;
                     }
                 }
+                int currPosY=-1;
+                while (1) {
+                    printf("Player %c: What is the vertical index of the position to place %c?\n", player1char, player1char);
+                    currPosY = read_int();
+                    if ((0<=currPosY)&&(currPosY<gameBoardSize)) {
+                        break;
+                    }
+                }
+                if (theGameBoard[currPosY][currPosX]==EMPTY) {
+                    theGameBoard[currPosY][currPosX] = player1char;
+                    turn++;
+                }
+                else {printf("Not a available position.\n");}
+
             }
         }
         while (1) {
-            printf("Do you want to play gain?");
+            printf("Do you want to play gain?\n'y' to play again, anything else to exit.\n");
+            if ((read_char()=='y')||(read_char()=='Y')) {
+                playGame=0;
+            }
+            else {playGame=1;}
         }
     }
 
