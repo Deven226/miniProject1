@@ -11,9 +11,13 @@ void board_init(char board[MAX_SIZE][MAX_SIZE], int n) {
 }
 
 void board_print(char board[MAX_SIZE][MAX_SIZE], int n) {
+   printf("  ");
+   for (int i=0; i<n; i++) {printf("%d  ", i);}
+   printf("\n");
    for (int i=0; i<n; i++) {
+      printf("%d ", i);
       for (int j=0; j<n; j++) {
-         printf("%c ", board[i][j]);
+         printf("%c  ", board[i][j]);
       }
       printf("\n");
    }

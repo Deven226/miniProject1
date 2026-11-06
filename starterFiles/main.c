@@ -24,40 +24,72 @@ void startup() {
     delay(1);
     printf("\nCheating devices ready...\n");
     delay(1);
-    printf("Ready.");
+    printf("Go.");
     printf("\n\n\nWelcome to TicTacToe - MiniProject 1 by Luke Dykstra and Deven Mathoo");
 }
 
 int main(void){
     startup();
-
-    // creation of the game board
-    char theGameBoard[MAX_SIZE][MAX_SIZE];
-    int gameBoardSize=0;
-    printf("\nHow big do you want the game board to be?\n");
     while (1) {
-        if ((3<=gameBoardSize)&&(gameBoardSize<=10)) {break;} // valid answer, done
-        else {printf("Value must be integer from 3-10 inclusive: ");} // not valid answer
-        gameBoardSize = read_int();
-    }
-    board_init(theGameBoard, gameBoardSize);
+        // creation of the game board
+        char theGameBoard[MAX_SIZE][MAX_SIZE];
+        int gameBoardSize=0;
+        printf("\nHow big do you want the game board to be?\n");
+        while (1) {
+            if ((3<=gameBoardSize)&&(gameBoardSize<=10)) {break;} // valid answer, done
+            else {printf("Value must be integer from 3-10 inclusive: ");} // not valid answer
+            gameBoardSize = read_int();
+        }
+        board_init(theGameBoard, gameBoardSize);
 
-    // how many players
-    int numPlayers=0;
-    printf("\nHow many players?\n");
-    while (1) {
-        if ((numPlayers==1)||(numPlayers==2)) {break;} // valid answer, done
-        else if (numPlayers==0) {printf("Ok, goodbye."); return 0;} // no one wants to play. ok, goodbye
-        else {printf("Value must be integer from 1-2 inclusive: ");} // not valid answer
-        numPlayers = read_int();
-    }
+        // how many players
+        int gameMode=0;
+        printf("What game mode:\n1 player vs player\n2 player vs bot\n");
+        while (1) {
+            if ((gameMode==1)||(gameMode==2)) {break;} // valid answer, done
+            else {printf("Value must be integer from 1-2 inclusive: ");} // not valid answer
+            gameMode = read_int();
+        }
+        char player1char =   'X';
+        char player2char =   'O';
+        char playerBotChar = player2char;
+        int botActive = (gameMode==2);
+        int turn = 0;
 
-    // main game loop
-    while (1) {
-        // win check
-        if (board_has_winner(theGameBoard, gameBoardSize, player1char)) {
-            printf("%c has won!\n", player1char);
-            break;
+        // main game loop
+        while (1) {
+            // print board
+            printf("Current game Board:\n");
+            board_print(theGameBoard, gameBoardSize);
+            // win check
+            if (board_has_winner(theGameBoard, gameBoardSize, player1char)) {
+                printf("Player %c has won!\n", player1char);
+                break;
+            }
+            if (board_has_winner(theGameBoard, gameBoardSize, player2char)) {
+                printf("Player %c has won!\n", player2char);
+                break;
+            }
+            if (board_has_winner(theGameBoard, gameBoardSize, playerBotChar)) {
+                printf("You lost against bot %c\n", playerBotChar);
+                break;
+            }
+            if (board_is_full(theGameBoard, gameBoardSize)) {
+                printf("No winner, cat game : (\n");
+                break;
+            }
+
+            if (turn%2==0) {
+                int currPosX=-1;
+                while (1) {
+                    if ((0<=currPosX)&&(currPosX<gameBoardSize)) {
+                        
+                    }
+                }
+            }
+        }
+        while (1) {
+            printf("Do you want to play gain?");
         }
     }
 
