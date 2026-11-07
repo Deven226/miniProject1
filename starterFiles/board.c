@@ -11,11 +11,11 @@ void board_init(char board[MAX_SIZE][MAX_SIZE], int n) {
 }
 
 void board_print(char board[MAX_SIZE][MAX_SIZE], int n) {
-   printf("  ");
+   printf("   ");
    for (int i=0; i<n; i++) {printf("%d  ", i);}
    printf("\n");
    for (int i=0; i<n; i++) {
-      printf("%d ", i);
+      printf("%d  ", i);
       for (int j=0; j<n; j++) {
          printf("%c  ", board[i][j]);
       }
@@ -64,7 +64,7 @@ int board_has_winner(char board[MAX_SIZE][MAX_SIZE], int n, char mark) {
    // printf("\nangle2");
    count=0;
    for (int i=0; i<n; i++) {
-      if (board[n-i][i]==mark) {count++;}
+      if (board[n-i-1][i]==mark) {count++;}
       // printf("count: %d", count);
       if (count>=n) {return 1;}
    }

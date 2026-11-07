@@ -29,6 +29,7 @@ void startup() {
 }
 
 int bot_try_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark) {
+    printf("bot try win ");
     int count=0;
     // check columns
     // printf("\n%c columns", botMark);
@@ -83,12 +84,12 @@ int bot_try_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark) {
    // printf("\nangle2");
    count=0;
    for (int i=0; i<n; i++) {
-      if (board[n-i][i]==botMark) {count++;}
+      if (board[n-i-1][i]==botMark) {count++;}
       // printf("count: %d", count);
         if (count==n-1) {
             for (int i=0; i<n; i++) {
-                if (board[n-i][i]==EMPTY) {
-                    board[n-i][i]=botMark;
+                if (board[n-i-1][i]==EMPTY) {
+                    board[n-i-1][i]=botMark;
                     return 1;
                 }
             }
@@ -98,17 +99,18 @@ int bot_try_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark) {
 }
 
 int bot_try_stop_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark, char oppMark) {
+    printf("bot try stop win ");
     int count=0;
     // check columns
     // printf("\n%c columns", botMark);
    for (int col=0; col<n; col++) {
       count=0;
       for (int row=0; row<n; row++) {
-         if (board[row][col]==botMark) {count++;}
+         if (board[row][col]==oppMark) {count++;}
         //  printf("count: %d", count);
          if (count==n-1) {
             for (int i=0; i<n; i++) {
-                if (board[i][col]==oppMark) {
+                if (board[i][col]==EMPTY) {
                     board[i][col]=botMark;
                     return 1;
                 }
@@ -121,11 +123,11 @@ int bot_try_stop_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark, char o
    for (int row=0; row<n; row++) {
       count=0;
       for (int col=0; col<n; col++) {
-         if (board[row][col]==botMark) {count++;}
+         if (board[row][col]==oppMark) {count++;}
          // printf("count: %d", count);
          if (count==n-1) {
             for (int i=0; i<n; i++) {
-                if (board[row][i]==oppMark) {
+                if (board[row][i]==EMPTY) {
                     board[row][i]=botMark;
                     return 1;
                 }
@@ -137,11 +139,11 @@ int bot_try_stop_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark, char o
    // printf("\nangle1");
    count=0;
    for (int i=0; i<n; i++) {
-      if (board[i][i]==botMark) {count++;}
+      if (board[i][i]==oppMark) {count++;}
       // printf("count: %d", count);
         if (count==n-1) {
             for (int i=0; i<n; i++) {
-                if (board[i][i]==oppMark) {
+                if (board[i][i]==EMPTY) {
                     board[i][i]=botMark;
                     return 1;
                 }
@@ -152,12 +154,12 @@ int bot_try_stop_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark, char o
    // printf("\nangle2");
    count=0;
    for (int i=0; i<n; i++) {
-      if (board[n-i][i]==botMark) {count++;}
+      if (board[n-i-1][i]==oppMark) {count++;}
       // printf("count: %d", count);
         if (count==n-1) {
             for (int i=0; i<n; i++) {
-                if (board[n-i][i]==oppMark) {
-                    board[n-i][i]=botMark;
+                if (board[n-i-1][i]==EMPTY) {
+                    board[n-i-1][i]=botMark;
                     return 1;
                 }
             }
@@ -167,6 +169,7 @@ int bot_try_stop_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark, char o
 }
 
 int bot_make_move(char board[MAX_SIZE][MAX_SIZE], int n, char botMark) {
+    printf("bot make move ");
     for (int row=0; row<n; row++) {
         for (int col=0; col<n; col++) {
             if (board[row][col]==EMPTY) {
@@ -264,7 +267,7 @@ int main(void){
                     theGameBoard[currPosY][currPosX] = player1char;
                     turn++;
                 }
-                else {printf("Not a available position.\n");}
+                else {printf("Not an available position.\n");}
             }
             else if (turn%2==1&&!botActive) {
                 while (playGame) {
@@ -296,6 +299,7 @@ int main(void){
                         }
                     }
                 }
+                turn++;
             }
             else {printf("Advancement made!\nHow did we get here?");}
         }
