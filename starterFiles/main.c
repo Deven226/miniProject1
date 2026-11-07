@@ -148,8 +148,9 @@ int main(void){
             char answer = read_char();
             if ((answer=='y')||(answer=='Y')) {
                 playGame=1;
+                break;
             }
-            else {playGame=0;}
+            else {playGame=0;break;}
         }
     }
 
