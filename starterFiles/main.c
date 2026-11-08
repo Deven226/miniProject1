@@ -28,159 +28,6 @@ void startup() {
     printf("\n\n\nWelcome to TicTacToe - MiniProject 1 by Luke Dykstra and Deven Mathoo");
 }
 
-int bot_try_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark) {
-    printf("bot try win ");
-    int count=0;
-    // check columns
-    // printf("\n%c columns", botMark);
-   for (int col=0; col<n; col++) {
-      count=0;
-      for (int row=0; row<n; row++) {
-         if (board[row][col]==botMark) {count++;}
-        //  printf("count: %d", count);
-         if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[i][col]==EMPTY) {
-                    board[i][col]=botMark;
-                    return 1;
-                }
-            }
-        }
-      }
-   }
-   // check rows
-   // printf("\nrows");
-   for (int row=0; row<n; row++) {
-      count=0;
-      for (int col=0; col<n; col++) {
-         if (board[row][col]==botMark) {count++;}
-         // printf("count: %d", count);
-         if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[row][i]==EMPTY) {
-                    board[row][i]=botMark;
-                    return 1;
-                }
-            }
-        }
-      }
-   }
-   // check angle 1
-   // printf("\nangle1");
-   count=0;
-   for (int i=0; i<n; i++) {
-      if (board[i][i]==botMark) {count++;}
-      // printf("count: %d", count);
-        if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[i][i]==EMPTY) {
-                    board[i][i]=botMark;
-                    return 1;
-                }
-            }
-        }
-   }
-   // check angle 2
-   // printf("\nangle2");
-   count=0;
-   for (int i=0; i<n; i++) {
-      if (board[n-i-1][i]==botMark) {count++;}
-      // printf("count: %d", count);
-        if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[n-i-1][i]==EMPTY) {
-                    board[n-i-1][i]=botMark;
-                    return 1;
-                }
-            }
-        }
-   }
-   return 0;
-}
-
-int bot_try_stop_win(char board[MAX_SIZE][MAX_SIZE], int n, char botMark, char oppMark) {
-    printf("bot try stop win ");
-    int count=0;
-    // check columns
-    // printf("\n%c columns", botMark);
-   for (int col=0; col<n; col++) {
-      count=0;
-      for (int row=0; row<n; row++) {
-         if (board[row][col]==oppMark) {count++;}
-        //  printf("count: %d", count);
-         if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[i][col]==EMPTY) {
-                    board[i][col]=botMark;
-                    return 1;
-                }
-            }
-        }
-      }
-   }
-   // check rows
-   // printf("\nrows");
-   for (int row=0; row<n; row++) {
-      count=0;
-      for (int col=0; col<n; col++) {
-         if (board[row][col]==oppMark) {count++;}
-         // printf("count: %d", count);
-         if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[row][i]==EMPTY) {
-                    board[row][i]=botMark;
-                    return 1;
-                }
-            }
-        }
-      }
-   }
-   // check angle 1
-   // printf("\nangle1");
-   count=0;
-   for (int i=0; i<n; i++) {
-      if (board[i][i]==oppMark) {count++;}
-      // printf("count: %d", count);
-        if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[i][i]==EMPTY) {
-                    board[i][i]=botMark;
-                    return 1;
-                }
-            }
-        }
-   }
-   // check angle 2
-   // printf("\nangle2");
-   count=0;
-   for (int i=0; i<n; i++) {
-      if (board[n-i-1][i]==oppMark) {count++;}
-      // printf("count: %d", count);
-        if (count==n-1) {
-            for (int i=0; i<n; i++) {
-                if (board[n-i-1][i]==EMPTY) {
-                    board[n-i-1][i]=botMark;
-                    return 1;
-                }
-            }
-        }
-   }
-   return 0;
-}
-
-int bot_make_move(char board[MAX_SIZE][MAX_SIZE], int n, char botMark) {
-    printf("bot make move ");
-    for (int row=0; row<n; row++) {
-        for (int col=0; col<n; col++) {
-            if (board[row][col]==EMPTY) {
-                board[row][col]=botMark;
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
 int main(void){
     startup();
     int playGame=1;
@@ -291,14 +138,15 @@ int main(void){
                 else {printf("Not a available position.\n");}
             }
             else if (turn%2==1&&botActive) {
-                if (!bot_try_win(theGameBoard, gameBoardSize, playerBotChar)) {
-                    if (!bot_try_stop_win(theGameBoard, gameBoardSize, playerBotChar, player1char)) {
-                        if (!bot_make_move(theGameBoard, gameBoardSize, playerBotChar)) {
-                            // something must've gone wrong, as the only way to get here is the board is full full which should've been detected BEFORE the bot played its turn...
-                            printf("Advancement made!\nHow did we get here?");
-                        }
-                    }
-                }
+                ai_move(theGameBoard, gameBoardSize, playerBotChar, player1char);
+                // if (!bot_try_win(theGameBoard, gameBoardSize, playerBotChar)) {
+                //     if (!bot_try_stop_win(theGameBoard, gameBoardSize, playerBotChar, player1char)) {
+                //         if (!bot_make_move(theGameBoard, gameBoardSize, playerBotChar)) {
+                //             // something must've gone wrong, as the only way to get here is the board is full full which should've been detected BEFORE the bot played its turn...
+                //             printf("Advancement made!\nHow did we get here?");
+                //         }
+                //     }
+                // }
                 turn++;
             }
             else {printf("Advancement made!\nHow did we get here?");}

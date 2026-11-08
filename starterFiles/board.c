@@ -79,3 +79,151 @@ int board_is_full(char board[MAX_SIZE][MAX_SIZE], int n) {
    }
    return 1;
 }
+
+void ai_move(char board[MAX_SIZE][MAX_SIZE], int n, char ai_mark, char human_mark) {
+   // bot try to win
+    int count=0;
+    // check columns
+    // printf("\n%c columns", botMark);
+   for (int col=0; col<n; col++) {
+      count=0;
+      for (int row=0; row<n; row++) {
+         if (board[row][col]==ai_mark) {count++;}
+        //  printf("count: %d", count);
+         if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[i][col]==EMPTY) {
+                    board[i][col]=ai_mark;
+                    return;
+                }
+            }
+        }
+      }
+   }
+   // check rows
+   // printf("\nrows");
+   for (int row=0; row<n; row++) {
+      count=0;
+      for (int col=0; col<n; col++) {
+         if (board[row][col]==ai_mark) {count++;}
+         // printf("count: %d", count);
+         if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[row][i]==EMPTY) {
+                    board[row][i]=ai_mark;
+                    return;
+                }
+            }
+        }
+      }
+   }
+   // check angle 1
+   // printf("\nangle1");
+   count=0;
+   for (int i=0; i<n; i++) {
+      if (board[i][i]==ai_mark) {count++;}
+      // printf("count: %d", count);
+        if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[i][i]==EMPTY) {
+                    board[i][i]=ai_mark;
+                    return;
+                }
+            }
+        }
+   }
+   // check angle 2
+   // printf("\nangle2");
+   count=0;
+   for (int i=0; i<n; i++) {
+      if (board[n-i-1][i]==ai_mark) {count++;}
+      // printf("count: %d", count);
+        if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[n-i-1][i]==EMPTY) {
+                    board[n-i-1][i]=ai_mark;
+                    return;
+                }
+            }
+        }
+   }
+
+   // bot try to stop human from win
+   // printf("bot try stop win ");
+   count=0;
+   // check columns
+   // printf("\n%c columns", botMark);
+   for (int col=0; col<n; col++) {
+      count=0;
+      for (int row=0; row<n; row++) {
+         if (board[row][col]==human_mark) {count++;}
+        //  printf("count: %d", count);
+         if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[i][col]==EMPTY) {
+                    board[i][col]=ai_mark;
+                    return;
+                }
+            }
+        }
+      }
+   }
+   // check rows
+   // printf("\nrows");
+   for (int row=0; row<n; row++) {
+      count=0;
+      for (int col=0; col<n; col++) {
+         if (board[row][col]==human_mark) {count++;}
+         // printf("count: %d", count);
+         if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[row][i]==EMPTY) {
+                    board[row][i]=ai_mark;
+                    return;
+                }
+            }
+        }
+      }
+   }
+   // check angle 1
+   // printf("\nangle1");
+   count=0;
+   for (int i=0; i<n; i++) {
+      if (board[i][i]==human_mark) {count++;}
+      // printf("count: %d", count);
+        if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[i][i]==EMPTY) {
+                    board[i][i]=ai_mark;
+                    return;
+                }
+            }
+        }
+   }
+   // check angle 2
+   // printf("\nangle2");
+   count=0;
+   for (int i=0; i<n; i++) {
+      if (board[n-i-1][i]==human_mark) {count++;}
+      // printf("count: %d", count);
+        if (count==n-1) {
+            for (int i=0; i<n; i++) {
+                if (board[n-i-1][i]==EMPTY) {
+                    board[n-i-1][i]=ai_mark;
+                    return;
+                }
+            }
+        }
+   }
+
+   // bot make move
+   // printf("bot make move ");
+    for (int row=0; row<n; row++) {
+        for (int col=0; col<n; col++) {
+            if (board[row][col]==EMPTY) {
+                board[row][col]=ai_mark;
+                return;
+            }
+        }
+    }
+}
