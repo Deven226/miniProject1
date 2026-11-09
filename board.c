@@ -1,6 +1,6 @@
 /*
 board.c
-by Luke Dykstra and Deven Mathoo
+by Luke Dykstra 1440689, Deven Mathoo 1423575
 contains all the functions to create, use, and detect winning of a tictactoe board
 */
 

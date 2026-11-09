@@ -1,5 +1,5 @@
 /*
-Luke Dykstra, Deven Mathoo
+Luke Dykstra 1440689, Deven Mathoo 1423575
 ENGG*1410
 Mini Project 1 - TicTacToe
 Oct 26, 2026
