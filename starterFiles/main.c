@@ -8,24 +8,12 @@
 #include "board.h"
 #include "input.h"
 
-void delay(float seconds) {
-    for (int i=0; i<seconds*1000000000; i++) {continue;}
-}
-
 void startup() {
     printf("Version: [unknown]\n");
-    printf("Initializing");
-    delay(1);
-    printf(".");
-    delay(1);
-    printf(".");
-    delay(1);
-    printf(".");
-    delay(1);
-    printf("\nCheating devices ready...\n");
-    delay(1);
-    printf("Go.");
-    printf("\n\n\nWelcome to TicTacToe - MiniProject 1 by Luke Dykstra and Deven Mathoo");
+    printf("Initializing...\n");
+    printf("Winning devices ready...\n");
+    printf("Go.\n");
+    printf("\nWelcome to TicTacToe - MiniProject 1 by Luke Dykstra and Deven Mathoo");
 }
 
 int main(void){
