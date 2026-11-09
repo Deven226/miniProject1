@@ -120,22 +120,15 @@ int main(void){
                 while (playGame) {
                     printf("Player %c: What is the horizontal index of the position to place %c?\n", player2char, player2char);
                     currPosX = read_int();
-                    if ((0<=currPosX)&&(currPosX<gameBoardSize)) {
-                        break;
-                    }
-                }
-                while (playGame) {
                     printf("Player %c: What is the vertical index of the position to place %c?\n", player2char, player2char);
                     currPosY = read_int();
-                    if ((0<=currPosY)&&(currPosY<gameBoardSize)) {
+                    if (move_is_valid(theGameBoard, gameBoardSize, currPosX, currPosY)) {
+                        theGameBoard[currPosY][currPosX] = player2char;
+                        turn++;
                         break;
                     }
+                    else {printf("Not an available position.\n");}
                 }
-                if (theGameBoard[currPosY][currPosX]==EMPTY) {
-                    theGameBoard[currPosY][currPosX] = player2char;
-                    turn++;
-                }
-                else {printf("Not a available position.\n");}
             }
             else if (turn%2==1&&botActive) {
                 ai_move(theGameBoard, gameBoardSize, playerBotChar, player1char);
