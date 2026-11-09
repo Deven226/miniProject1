@@ -1,3 +1,9 @@
+/*
+board.c
+by Luke Dykstra and Deven Mathoo
+*/
+
+
 #include <stdio.h>
 #include "board.h"
 

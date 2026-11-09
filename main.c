@@ -1,13 +1,16 @@
-// Luke Dykstra, Deven Mathoo
-// ENGG*1410
-// Mini Project 1 - TicTacToe
-// Oct 26, 2026
+/*
+Luke Dykstra, Deven Mathoo
+ENGG*1410
+Mini Project 1 - TicTacToe
+Oct 26, 2026
+*/
 
 
 #include <stdio.h>
 #include "board.h"
 #include "input.h"
 
+/*contains 'decorative,' labeling text that shows at startup*/
 void startup() {
     printf("Version: [unknown]\n");
     printf("Initializing...\n");
@@ -16,6 +19,7 @@ void startup() {
     printf("\nWelcome to TicTacToe - MiniProject 1 by Luke Dykstra and Deven Mathoo");
 }
 
+/*main*/
 int main(void){
     startup();
     int playGame=1;

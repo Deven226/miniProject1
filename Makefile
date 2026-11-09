@@ -1,18 +1,25 @@
-# Makefile for mini project 1 tic tac toe.
-# copied from lab5 makefile
-# modified by Luke Dykstra
-
-#   make        build
-#   make clean  delete what make built
+# Makefile -- ENGG*1410 Mini-Project 1
+# SUPPLIED FILE. Do not change this file.
 #
-# -g puts line numbers and variable names into the program,
-# so gdb (or lldb on a Mac) can show you your own code.
+#   make         builds ./tictactoe
+#   make clean   removes ./tictactoe and the .o files
 
 CC     = gcc
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -std=c11 -Wall -Wextra -g
+OBJS   = main.o board.o input.o
 
-miniProject1: ticTacToe.c
-	$(CC) $(CFLAGS) ticTacToe.c -o ticTacToe
+tictactoe: $(OBJS)
+	$(CC) $(CFLAGS) -o tictactoe $(OBJS)
 
+main.o: main.c board.h input.h
+	$(CC) $(CFLAGS) -c main.c
+
+board.o: board.c board.h
+	$(CC) $(CFLAGS) -c board.c
+
+input.o: input.c input.h
+	$(CC) $(CFLAGS) -c input.c
+
+.PHONY: clean
 clean:
-	rm -rf ticTacToe ticTacToe.dSYM
+	rm -f tictactoe $(OBJS)
